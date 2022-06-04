@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['role'];
+
+    // public function user_role()
+    // {
+    //     return $this->belongsTo(UserRole::class);
+    // }
 }
