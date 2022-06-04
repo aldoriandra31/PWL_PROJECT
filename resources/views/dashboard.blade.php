@@ -1,44 +1,83 @@
-<x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Timeline') }}
-    </h2>
-  </x-slot>
-  <x-container>
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-      <form action="{{ route('buat.post') }}" method="post">
-        @csrf
-        <div class="p-6 bg-white border-b border-gray-200">
-          <textarea name="body" class="w-full rounded textarea textarea-primary bg-white @error('body') textarea-error @enderror"
-            rows="3" placeholder="Post something">{{ old('body') }}</textarea>
-          @error('body')
-            <span class="text-error block">{{ $message }}</span>
-          @enderror
-          <button type="submit" class="btn">Post</button>
+@extends('templates.app')
+@section('content')
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Starter Page</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Starter Page</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
         </div>
-      </form>
-    </div>
-    @foreach ($posts as $post)
-      <div class="card w-full bg-white text-neutral-focus text-primary-content my-3">
-        <div class="card-body">
-          <h2 class="card-title">
-            {{ $post->user->name }} -
-            <span class="text-gray-400">{{ $post->created_at->diffForHumans() }}</span>
-            @if (Auth::user()->id == $post->user_id)
-              <a href="{{ route('edit.post', [$post]) }}" class="btn btn-primary">Edit</a>
-              <form action="{{ route('hapus.post', [$post]) }}" method="post">
-                @method('DELETE')
-                @csrf
-                <input type="submit" class="btn btn-danger" value="Hapus">
-              </form>
-            @endif
-          </h2>
-          <p>{{ $post->body }}</p>
+
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div><!-- /.card -->
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
         </div>
-        <div class="flex justify-end">
-          <a href="{{ route('show.post', $post) }}" class="mx-5">Comment({{ $post->comments_count }})</a>
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
         </div>
       </div>
-    @endforeach
-  </x-container>
-</x-app-layout>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+@endsection

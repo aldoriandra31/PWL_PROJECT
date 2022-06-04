@@ -14,8 +14,8 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        // If (Auth::user())
-        if (!$request->expectsJson()) {
+        // dd('masuk');
+        if (! $request->expectsJson()) {
             return route('login');
         }
     }
